@@ -1,9 +1,6 @@
 #include <iostream>
-#include <chrono>
-#include <sstream>
-#include <iomanip>
-#include "markup.h" // Biblioteka CMarkup
-#include "KsiazkaAdresowa.h"
+#include "BudgetMainApp.h"
+#include "Menus.h"
 
 using namespace std;
 
@@ -13,60 +10,66 @@ int main(){
     char choice;
 
     while (true){
-        if (!ksiazkaAdresowa.czyUzytkownikJestZalogowany()){
-            choice = ksiazkaAdresowa.wybierzOpcjeZMenuGlownego();
+        if (!budgetMainApp.isUserLoggedIn()){
+            Menus::showTitle("HOME MENU");
+            Menus::showHomeMenu();
+
+            choice = Utils::getCharacter();
 
             switch (choice){
             case '1':
-                ksiazkaAdresowa.rejestracjaUzytkownika();
+                budgetMainApp.loginUser();
                 break;
             case '2':
-                ksiazkaAdresowa.logowanieUzytkownika();
+                budgetMainApp.registerUser();
                 break;
             case '9':
+                cout << "\nSee you next time.\n"
                 exit(0);
                 break;
             default:
-                cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+                cout <<"\nThere is no such option in menu. Try again.\n" << endl;
                 system("pause");
                 break;
             }
         }
         else{
-            choice = ksiazkaAdresowa.wybierzOpcjeZMenuUzytkownika();
+            Menus::showTitle("MAIN MENU");
+            Menus::showMainMenu();
+
+            choice = Utils::getCharacter();;
 
             switch (choice){
             case '1':
-                ksiazkaAdresowa.dodajAdresata();
+                budgetMainApp.addIncome();
                 break;
             case '2':
-                ksiazkaAdresowa.wyszukajAdresatowPoImieniu();
+                budgetMainApp.addExpense();
                 break;
             case '3':
-                ksiazkaAdresowa.wyszukajAdresatowPoNazwisku();
+                budgetMainApp.displayCurrentMonthBalance();
                 break;
             case '4':
-                ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+                budgetMainApp.displayPreviousMonthBalance();
                 break;
             case '5':
-                ksiazkaAdresowa.usunAdresata();
+                budgetMainApp.displaySelectedPeriodBalance();
                 break;
             case '6':
-                ksiazkaAdresowa.edytujAdresata();
+                budgetMainApp.changeLoggedInUserPassword();
                 break;
             case '7':
-                ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
+                budgetMainApp.logoutUser();
                 break;
-            case '8':
-                ksiazkaAdresowa.wylogowanieUzytkownika();
+            default:
+                cout <<"\nThere is no such option in menu. Try again.\n" << endl;
+                system("pause");
                 break;
             }
         }
     }
     return 0;
 }
-
-
 
 
 
