@@ -1,6 +1,7 @@
 #include <iostream>
 //#include "BudgetMainApp.h"
 #include "Menus.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -11,11 +12,11 @@ int main(){
 
     while (true){
         //if (!budgetMainApp.isUserLoggedIn()){
-        if (false){//>>TEMP LINE FOR TESTS<<
+        if (true){//>>TEMP LINE FOR TESTS<<
             Menus::showTitle("HOME MENU");
             Menus::showHomeMenu();
 
-            //choice = Utils::getCharacter();
+            choice = Utils::getCharacter();
 
             switch (choice){
             case '1':
@@ -38,7 +39,7 @@ int main(){
             Menus::showTitle("MAIN MENU");
             Menus::showMainMenu();
 
-            //choice = Utils::getCharacter();;
+            choice = Utils::getCharacter();;
 
             switch (choice){
             case '1':
