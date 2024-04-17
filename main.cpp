@@ -1,30 +1,31 @@
 #include <iostream>
-#include "BudgetMainApp.h"
+//#include "BudgetMainApp.h"
 #include "Menus.h"
 
 using namespace std;
 
 int main(){
-    BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
+    //BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
 
     char choice;
 
     while (true){
-        if (!budgetMainApp.isUserLoggedIn()){
+        //if (!budgetMainApp.isUserLoggedIn()){
+        if (false){//>>TEMP LINE FOR TESTS<<
             Menus::showTitle("HOME MENU");
             Menus::showHomeMenu();
 
-            choice = Utils::getCharacter();
+            //choice = Utils::getCharacter();
 
             switch (choice){
             case '1':
-                budgetMainApp.loginUser();
+                //budgetMainApp.loginUser();
                 break;
             case '2':
-                budgetMainApp.registerUser();
+                //budgetMainApp.registerUser();
                 break;
             case '9':
-                cout << "\nSee you next time.\n"
+                cout << "\nSee you next time.\n";
                 exit(0);
                 break;
             default:
@@ -37,29 +38,29 @@ int main(){
             Menus::showTitle("MAIN MENU");
             Menus::showMainMenu();
 
-            choice = Utils::getCharacter();;
+            //choice = Utils::getCharacter();;
 
             switch (choice){
             case '1':
-                budgetMainApp.addIncome();
+                //budgetMainApp.addIncome();
                 break;
             case '2':
-                budgetMainApp.addExpense();
+                //budgetMainApp.addExpense();
                 break;
             case '3':
-                budgetMainApp.displayCurrentMonthBalance();
+                //budgetMainApp.displayCurrentMonthBalance();
                 break;
             case '4':
-                budgetMainApp.displayPreviousMonthBalance();
+                //budgetMainApp.displayPreviousMonthBalance();
                 break;
             case '5':
-                budgetMainApp.displaySelectedPeriodBalance();
+                //budgetMainApp.displaySelectedPeriodBalance();
                 break;
             case '6':
-                budgetMainApp.changeLoggedInUserPassword();
+                //budgetMainApp.changeLoggedInUserPassword();
                 break;
             case '7':
-                budgetMainApp.logoutUser();
+                //budgetMainApp.logoutUser();
                 break;
             default:
                 cout <<"\nThere is no such option in menu. Try again.\n" << endl;
@@ -68,7 +69,7 @@ int main(){
             }
         }
     }
-    return 0;
+    return 0;//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
 }
 
 
