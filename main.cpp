@@ -1,18 +1,17 @@
 #include <iostream>
-//#include "BudgetMainApp.h"
+#include "BudgetMainApp.h"
 #include "Menus.h"
 #include "Utils.h"
 
 using namespace std;
 
 int main(){
-    //BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
+    BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
 
     char choice;
 
     while (true){
-        //if (!budgetMainApp.isUserLoggedIn()){
-        if (true){//>>TEMP LINE FOR TESTS<<
+        if (!budgetMainApp.isUserLoggedIn()){
             Menus::showTitle("HOME MENU");
             Menus::showHomeMenu();
 
