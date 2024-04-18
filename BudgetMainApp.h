@@ -12,12 +12,12 @@ class BudgetMainApp{
 //    BudgetManager *budgetManager;
     const string INCOMES_FILE_NAME;
     const string EXPENSE_FILE_NAMES;
-    const string TEMP;//>>TEMP LINE FOR TESTS<<
+
 
 public:
     /*BudgetMainApp(string userFileName, string incomeFileName, string expenseFileName)
     : userManager(userFileName), INCOMES_FILE_NAME(incomeFileName), EXPENSE_FILE_NAMES(expenseFileName){
-        adresatMeneger = NULL;
+        budgetManager = NULL;
     };
     ~BudgetMainApp(){
         delete budgetManager;
@@ -26,7 +26,7 @@ public:
     */
     BudgetMainApp(string userFileName, string incomeFileName, string expenseFileName)
     : userManager(userFileName), INCOMES_FILE_NAME(incomeFileName), EXPENSE_FILE_NAMES(expenseFileName){
-        adresatMeneger = NULL;
+       // budgetManager = NULL;
     };
 
     bool isUserLoggedIn();

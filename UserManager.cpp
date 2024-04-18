@@ -1,6 +1,7 @@
 #include "UserManager.h"
 
 void UserManager::registerUser(){
+/*
     User user = enterNewUserData();
 
     users.push_back(user);
@@ -8,9 +9,10 @@ void UserManager::registerUser(){
 
     cout << "\nAcount sucsessfully created\n\n";
     system("pause");
+*/
 }
 
-User UserManager::enterNewUserData(){
+/*User UserManager::enterNewUserData(){
     User user;
 
     user.setId(getNewUserId());
@@ -18,82 +20,90 @@ User UserManager::enterNewUserData(){
     string password = "";
 
     do{
-        cout << "Podaj login: ";
-        login = MetodyPomocnicze::wczytajLinie();
-        user.ustawLogin(login);
+        cout << "Enter login: ";
+        login = Utils::readLine();
+        user.setLogin(login);
     }
-    while (czyIstniejeLogin(user.pobierzLogin()) == true);
+    while (checkIfLoginExist(user.getLogin()) == true);
 
-    cout << "Podaj password: ";
-    password = MetodyPomocnicze::wczytajLinie();
+    cout << "Enter password: ";
+    password = Utils::readLine();
 
-    user.ustawHaslo(password);
+    user.setPassword(password);
 
     return user;
-}
+}*/
 
 int UserManager::getNewUserId(){
+    /*
     if (users.empty() == true)
         return 1;
     else
-        return users.back().pobierzId() + 1;
+        return users.back().getId() + 1;
+    */
 }
 
 bool UserManager::ifLoginExist(string login){
+    /*
     for (int i = 0; i < users.size(); i++){
-        if (users[i].pobierzLogin() == login){
-            cout << endl << "Istnieje user o takim loginie." << endl;
+        if (users[i].getLogin() == login){
+            cout << endl << "There is a user with this login." << endl;
             return true;
         }
     }
     return false;
+    */
 }
 
 void UserManager::loginUser(){
+    /*
     User user;
     string login = "", password = "";
     vector <User>::iterator itr = users.begin();
 
-    cout << endl << "Podaj login: ";
-    login = MetodyPomocnicze::wczytajLinie();
+    cout << endl << "Enter login: ";
+    login = Utils::readLine();
 
     while (itr != users.end()){
-        if (itr -> pobierzLogin() == login){
-            for (int iloscProb = 3; iloscProb > 0; iloscProb--){
-                cout << "Podaj password. Pozostalo prob: " << iloscProb << ": ";
-                password = MetodyPomocnicze::wczytajLinie();
+        if (itr -> getLogin() == login){
+            for (int attempt = 3; attempt > 0; attempt--){
+                cout << "Enter password. Trials remaining: " << attempt << ": ";
+                password = Utils::readLine();
 
-                if (itr -> pobierzHaslo() == password){
-                    idZalogowanegoUzytkownika = itr -> pobierzId();
-                    cout << endl << "Zalogowales sie." << endl << endl;
+                if (itr -> getPassword() == password){
+                    loggedUserId = itr -> getId();
+                    cout << endl << "You logged in." << endl << endl;
                     system("pause");
                     return;
                 }
             }
-            cout << "Wprowadzono 3 razy bledne password." << endl;
+            cout << "Wrong password entered 3 times." << endl;
             system("pause");
             return;
         }
         itr++;
     }
-    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    cout << "There is no user with such a login" << endl << endl;
     system("pause");
     return;
+    */
 }
 
 void UserManager::changeLoggedInUserPassword(){
-    string noweHaslo = "";
-    cout << "Podaj nowe password: ";
-    noweHaslo = MetodyPomocnicze::wczytajLinie();
+    /*
+    string newPassword = "";
+    cout << "Enter nowe password: ";
+    newPassword = Utils::readLine();
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++){
-        if (itr -> pobierzId() == idZalogowanegoUzytkownika){
-            itr -> ustawHaslo(noweHaslo);
-            cout << "Haslo zostalo zmienione." << endl << endl;
+        if (itr -> getId() == loggedUserId){
+            itr -> setPassword(newPassword);
+            cout << "The password has been changed." << endl << endl;
             system("pause");
         }
     }
-    userFile.zapiszWszystkichUzytkownikowDoPliku(users);
+    userFile.changePasswordInFile(users);
+    */
 }
 
 void UserManager::logoutUser(){
@@ -101,7 +111,7 @@ void UserManager::logoutUser(){
 }
 
 bool UserManager::isUserLoggedIn(){
-    if(idZalogowanegoUzytkownika > 0)
+    if(loggedUserId > 0)
         return true;
     else
         return false;

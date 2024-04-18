@@ -1,7 +1,7 @@
 #include "BudgetMainApp.h"
 
 bool BudgetMainApp::isUserLoggedIn(){
-    userManager::isUserLoggedIn;
+    userManager.isUserLoggedIn();
 }
 
 void BudgetMainApp::registerUser(){}

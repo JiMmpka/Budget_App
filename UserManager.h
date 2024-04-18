@@ -16,20 +16,21 @@ using namespace std;
 
 class UserManager{
     int loggedUserId;
-    vector <User> users;
-    UserFile userFile;
+    //vector <User> users;
+//    UserFile userFile;
+    const string TEMP;//>>TEMP LINE FOR TESTS<<
 
     bool checkIfLoginExist(const string &login);
-    User enterNewUserData();
+//    User enterNewUserData();
     int getNewUserId();
-    bool ifLoginExist();
+    bool ifLoginExist(string login);
     //void FindUserByLogin (const string  & login, vector <User>:: iterator &itr);
     //void findUserById(vedtor <User>::iterator &itr);
 
 public:
-    UserManager(string userFileName) : userFile(userFileName){
+    UserManager(string userFileName) : TEMP(userFileName){
         loggedUserId = 0;
-        users = UserFile.loadUsersFromFile();
+       // users = UserFile.loadUsersFromFile();
         };
     bool isUserLoggedIn();
     void registerUser();
