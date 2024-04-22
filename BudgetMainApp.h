@@ -15,19 +15,16 @@ class BudgetMainApp{
 
 
 public:
-    /*BudgetMainApp(string userFileName, string incomeFileName, string expenseFileName)
+    BudgetMainApp(string userFileName, string incomeFileName, string expenseFileName)
     : userManager(userFileName), INCOMES_FILE_NAME(incomeFileName), EXPENSE_FILE_NAMES(expenseFileName){
-        budgetManager = NULL;
+        //budgetManager = NULL;
     };
+    /*
     ~BudgetMainApp(){
         delete budgetManager;
         budgetManager = NULL;
     }
     */
-    BudgetMainApp(string userFileName, string incomeFileName, string expenseFileName)
-    : userManager(userFileName), INCOMES_FILE_NAME(incomeFileName), EXPENSE_FILE_NAMES(expenseFileName){
-       // budgetManager = NULL;
-    };
 
     bool isUserLoggedIn();
     void registerUser();
