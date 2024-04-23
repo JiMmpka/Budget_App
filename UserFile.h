@@ -16,9 +16,9 @@ class UserFile : public File{
 public:
     UserFile(string userFileName) : File(userFileName){};
 
+    vector <User> loadUsersFromFile(); // TO DOO
     bool appendUserToFile(User &user);
-    vector <User> loadUsersFromFile();
-    User getUsersData(string data);
+    User getUsersData(string data); // TO DOO
     bool changePasswordInFile(int userId, string &password);
 };
 #endif

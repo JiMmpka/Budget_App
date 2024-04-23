@@ -19,15 +19,14 @@ class UserManager{
     vector <User> users;
     UserFile userFile;
 
-    bool checkIfLoginExist(const string &login);
+    bool isLoginExist(const string &login);//TO DOO
     User enterNewUserData();
     int getNewUserId();
-    bool ifLoginExist(string login);
     //void FindUserByLogin (const string  & login, vector <User>:: iterator &itr);
     //void findUserById(vedtor <User>::iterator &itr);
 
 public:
-    UserManager(string userFileName) : userFile(userFileName){//TO DOO change TEMP to userFile(userFileName)
+    UserManager(string userFileName) : userFile(userFileName){
         loggedUserId = 0;
        // users = UserFile.loadUsersFromFile();
         };

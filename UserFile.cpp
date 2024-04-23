@@ -1,26 +1,6 @@
 #include "UserFile.h"
 
-bool UserFile::appendUserToFile(User &user){
-    string liniaZDanymiUzytkownika = "";
-    fstream plikTekstowy;
-    plikTekstowy.open(getFileName().c_str(), ios::app);
-
-    if (plikTekstowy.good() == true){
-        //liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(user);
-
-        if (isFileEmpty() == true){
-            plikTekstowy << liniaZDanymiUzytkownika;
-        }
-        else{
-            plikTekstowy << endl << liniaZDanymiUzytkownika ;
-        }
-    }
-    else
-        cout << "Nie udalo sie otworzyc pliku " << getFileName() << " i zapisac w nim danych." << endl;
-    plikTekstowy.close();
-}
-
-vector <User> UserFile::loadUsersFromFile(){
+vector <User> UserFile::loadUsersFromFile(){ //TO DOO
     User user;
     vector <User> users;
     string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
@@ -38,7 +18,7 @@ vector <User> UserFile::loadUsersFromFile(){
     return users;
 }
 
-User UserFile::getUsersData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami)
+User UserFile::getUsersData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) //TO DOO
 {
     User user;
     string pojedynczaDanaUzytkownika = "";
@@ -66,6 +46,48 @@ User UserFile::getUsersData(string daneJednegoUzytkownikaOddzielonePionowymiKres
     }
     return user;
 }
+
+bool UserFile::appendUserToFile(User &user){
+    CMarkup xml; //TO DOO - already created in File.h
+
+    bool fileExists = xml.Load(getFileName());
+
+    if (!fileExists)
+    {
+        xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xml.AddElem("Users");
+    }
+
+    xml.FindElem();
+    xml.IntoElem();
+    xml.AddElem("User");
+    xml.IntoElem();
+    xml.AddElem("UserId", user.getId());
+    xml.AddElem("Login", user.getLogin());
+    xml.AddElem("Password", user.getPassword());
+    xml.AddElem("Name", user.getName());
+    xml.AddElem("Surname", user.getSurname());
+
+    xml.Save("users.xml");
+
+    return 0;
+/*
+    if (plikTekstowy.good() == true){
+        //liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(user);
+
+        if (isFileEmpty() == true){
+            plikTekstowy << liniaZDanymiUzytkownika;
+        }
+        else{
+            plikTekstowy << endl << liniaZDanymiUzytkownika ;
+        }
+    }
+    else
+        cout << "Nie udalo sie otworzyc pliku " << getFileName() << " i zapisac w nim danych." << endl;
+    plikTekstowy.close();
+    */
+}
+
 
 bool UserFile::changePasswordInFile(int userId, string &password){
 

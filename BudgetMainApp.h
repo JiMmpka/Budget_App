@@ -27,10 +27,10 @@ public:
     */
 
     bool isUserLoggedIn();
-    void registerUser();
-    void loginUser();
-    void changeLoggedInUserPassword();
-    void logoutUser();
+    void registerUser();//TO DOO
+    void loginUser();//TO DOO
+    void changeLoggedInUserPassword();//TO DOO
+    void logoutUser();//TO DOO
 
     void addIncome();
     void addExpense();

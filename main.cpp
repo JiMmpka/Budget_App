@@ -22,7 +22,7 @@ int main(){
                 //budgetMainApp.loginUser();
                 break;
             case '2':
-                //budgetMainApp.registerUser();
+                budgetMainApp.registerUser();
                 break;
             case '9':
                 cout << "\nSee you next time.\n";

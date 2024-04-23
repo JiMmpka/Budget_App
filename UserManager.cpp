@@ -1,7 +1,6 @@
 #include "UserManager.h"
 
 void UserManager::registerUser(){
-/*
     User user = enterNewUserData();
 
     users.push_back(user);
@@ -9,42 +8,45 @@ void UserManager::registerUser(){
 
     cout << "\nAcount sucsessfully created\n\n";
     system("pause");
-*/
 }
 
-/*User UserManager::enterNewUserData(){
+User UserManager::enterNewUserData(){
     User user;
-
-    user.setId(getNewUserId());
+    string name = "";    string surname = "";
     string login = "";
     string password = "";
+
+    cout << "Enter name: ";
+    name = Utils::readLine();
+    user.setName(name);
+
+    cout << "Enter surname: ";
+    surname = Utils::readLine();
+    user.setSurname(surname);
+    user.setId(getNewUserId());
 
     do{
         cout << "Enter login: ";
         login = Utils::readLine();
         user.setLogin(login);
     }
-    while (checkIfLoginExist(user.getLogin()) == true);
+    while (isLoginExist(user.getLogin()) == true);
 
     cout << "Enter password: ";
     password = Utils::readLine();
-
     user.setPassword(password);
 
     return user;
-}*/
+}
 
 int UserManager::getNewUserId(){
-    /*
     if (users.empty() == true)
         return 1;
     else
         return users.back().getId() + 1;
-    */
 }
 
-bool UserManager::ifLoginExist(string login){
-    /*
+bool UserManager::isLoginExist(const string &login){ //TO DOO
     for (int i = 0; i < users.size(); i++){
         if (users[i].getLogin() == login){
             cout << endl << "There is a user with this login." << endl;
@@ -52,7 +54,6 @@ bool UserManager::ifLoginExist(string login){
         }
     }
     return false;
-    */
 }
 
 void UserManager::loginUser(){

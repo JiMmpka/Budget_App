@@ -4,7 +4,9 @@ bool BudgetMainApp::isUserLoggedIn(){
     return userManager.isUserLoggedIn();
 }
 
-void BudgetMainApp::registerUser(){}
+void BudgetMainApp::registerUser(){
+    userManager.registerUser();
+}
 void BudgetMainApp::loginUser(){}
 void BudgetMainApp::changeLoggedInUserPassword(){}
 void BudgetMainApp::logoutUser(){}
