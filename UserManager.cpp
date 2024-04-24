@@ -30,11 +30,14 @@ User UserManager::enterNewUserData(){
         login = Utils::readLine();
         user.setLogin(login);
     }
-    while (isLoginExist(user.getLogin()) == true);
+    while(Utils::validateInput(user.getLogin()) || (isLoginExist(user.getLogin())));
 
-    cout << "Enter password: ";
-    password = Utils::readLine();
-    user.setPassword(password);
+    do{
+        cout << "Enter password: ";
+        password = Utils::readLine();
+        user.setPassword(password);
+    }
+    while(Utils::validateInput(user.getPassword()));
 
     return user;
 }
@@ -46,10 +49,10 @@ int UserManager::getNewUserId(){
         return users.back().getId() + 1;
 }
 
-bool UserManager::isLoginExist(const string &login){ //TO DOO
+bool UserManager::isLoginExist(const string &login){
     for (int i = 0; i < users.size(); i++){
         if (users[i].getLogin() == login){
-            cout << endl << "There is a user with this login." << endl;
+            cout << "\nThere is a user with this login.\n";
             return true;
         }
     }

@@ -19,7 +19,7 @@ class UserManager{
     vector <User> users;
     UserFile userFile;
 
-    bool isLoginExist(const string &login);//TO DOO
+    bool isLoginExist(const string &login);
     User enterNewUserData();
     int getNewUserId();
     //void FindUserByLogin (const string  & login, vector <User>:: iterator &itr);

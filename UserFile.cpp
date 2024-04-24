@@ -71,21 +71,6 @@ bool UserFile::appendUserToFile(User &user){
     xml.Save("users.xml");
 
     return 0;
-/*
-    if (plikTekstowy.good() == true){
-        //liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(user);
-
-        if (isFileEmpty() == true){
-            plikTekstowy << liniaZDanymiUzytkownika;
-        }
-        else{
-            plikTekstowy << endl << liniaZDanymiUzytkownika ;
-        }
-    }
-    else
-        cout << "Nie udalo sie otworzyc pliku " << getFileName() << " i zapisac w nim danych." << endl;
-    plikTekstowy.close();
-    */
 }
 
 
