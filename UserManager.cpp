@@ -50,7 +50,7 @@ int UserManager::getNewUserId(){
 }
 
 bool UserManager::isLoginExist(const string &login){
-    for (int i = 0; i < users.size(); i++){
+    for (size_t i = 0; i < users.size(); i++){
         if (users[i].getLogin() == login){
             cout << "\nThere is a user with this login.\n";
             return true;

@@ -1,54 +1,40 @@
 #include "UserFile.h"
 
-vector <User> UserFile::loadUsersFromFile(){ //TO DOO
-    User user;
+vector <User> UserFile::loadUsersFromFile(){
     vector <User> users;
-    string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
 
-    fstream plikTekstowy;
-    plikTekstowy.open(getFileName().c_str(), ios::in);
+    bool fileExists = xml.Load(getFileName());
 
-    if (plikTekstowy.good() == true){
-        while (getline(plikTekstowy, daneJednegoUzytkownikaOddzielonePionowymiKreskami)){
-            user = getUsersData(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
-            users.push_back(user);
-        }
-        plikTekstowy.close();
+    if (!fileExists){
+        return users;
     }
+
+    xml.ResetPos();
+    xml.FindElem("Users");
+    xml.IntoElem();
+
+    while (xml.FindElem("User")) {
+        User user;
+
+        xml.FindChildElem("UserId");
+        user.setId(stoi(xml.GetChildData()));
+        xml.FindChildElem("Login");
+        user.setLogin(xml.GetChildData());
+        xml.FindChildElem("Password");
+        user.setPassword(xml.GetChildData());
+        xml.FindChildElem("Name");
+        user.setName(xml.GetChildData());
+        xml.FindChildElem("Surname");
+        user.setSurname(xml.GetChildData());
+
+        users.push_back(user);
+    }
+
     return users;
 }
 
-User UserFile::getUsersData(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) //TO DOO
-{
-    User user;
-    string pojedynczaDanaUzytkownika = "";
-    int numerPojedynczejDanejUzytkownika = 1;
-
-    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++){
-        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|'){
-            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
-        }
-        else{
-            switch(numerPojedynczejDanejUzytkownika){
-            case 1:
-                user.setId(atoi(pojedynczaDanaUzytkownika.c_str()));
-                break;
-            case 2:
-                user.setLogin(pojedynczaDanaUzytkownika);
-                break;
-            case 3:
-                user.setPassword(pojedynczaDanaUzytkownika);
-                break;
-            }
-            pojedynczaDanaUzytkownika = "";
-            numerPojedynczejDanejUzytkownika++;
-        }
-    }
-    return user;
-}
-
 bool UserFile::appendUserToFile(User &user){
-    CMarkup xml; //TO DOO - already created in File.h
+    //CMarkup xml; //TO DOO - already created in File.h
 
     bool fileExists = xml.Load(getFileName());
 

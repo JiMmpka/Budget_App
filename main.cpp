@@ -11,7 +11,7 @@ int main(){
     char choice;
 
     while (true){
-        if (!budgetMainApp.isUserLoggedIn()){
+        if (!budgetMainApp.isUserLoggedIn()){ //TODOO
             Menus::showTitle("HOME MENU");
             Menus::showHomeMenu();
 
