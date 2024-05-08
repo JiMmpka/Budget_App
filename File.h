@@ -12,12 +12,11 @@ class File{
 
 protected:
     int lastId;
-    CMarkup xmlDoc;
-    void checkRootNode();
-    bool isFileEmpty();
+    CMarkup xml;
 
-public:
     File(string FileName) : FILE_NAME(FileName){};
+
+    void checkRootNode();//TO DOO gdzie tego mam u¿yæ?
     string getFileName();
 };
-#endif // PLIKTEKSTOWY_H
+#endif

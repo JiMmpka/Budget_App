@@ -28,8 +28,8 @@ class UserManager{
 public:
     UserManager(string userFileName) : userFile(userFileName){
         loggedUserId = 0;
-       // users = UserFile.loadUsersFromFile();
-        };
+        users = userFile.loadUsersFromFile();
+    };
     bool isUserLoggedIn();
     void registerUser();
     void loginUser();
