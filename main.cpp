@@ -11,7 +11,7 @@ int main(){
     char choice;
 
     while (true){
-        if (!budgetMainApp.isUserLoggedIn()){ //TODOO
+        if (!budgetMainApp.isUserLoggedIn()){
             Menus::showTitle("HOME MENU");
             Menus::showHomeMenu();
 
@@ -19,7 +19,7 @@ int main(){
 
             switch (choice){
             case '1':
-                //budgetMainApp.loginUser();
+                budgetMainApp.loginUser();
                 break;
             case '2':
                 budgetMainApp.registerUser();
@@ -29,7 +29,7 @@ int main(){
                 exit(0);
                 break;
             default:
-                cout <<"\nThere is no such option in menu. Try again.\n" << endl;
+                cout <<"\nThere is no such option in menu. Try again.\n\n";
                 system("pause");
                 break;
             }
@@ -57,19 +57,19 @@ int main(){
                 //budgetMainApp.displaySelectedPeriodBalance();
                 break;
             case '6':
-                //budgetMainApp.changeLoggedInUserPassword();
+                budgetMainApp.changeLoggedInUserPassword();
                 break;
             case '7':
-                //budgetMainApp.logoutUser();
+                budgetMainApp.logoutUser();
                 break;
             default:
-                cout <<"\nThere is no such option in menu. Try again.\n" << endl;
+                cout <<"\nThere is no such option in menu. Try again.\n\n";
                 system("pause");
                 break;
             }
         }
     }
-    return 0;//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+    return 0;
 }
 
 

@@ -34,12 +34,9 @@ vector <User> UserFile::loadUsersFromFile(){
 }
 
 bool UserFile::appendUserToFile(User &user){
-    //CMarkup xml; //TO DOO - already created in File.h
-
     bool fileExists = xml.Load(getFileName());
 
-    if (!fileExists)
-    {
+    if (!fileExists){
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -54,12 +51,31 @@ bool UserFile::appendUserToFile(User &user){
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
 
-    xml.Save("users.xml");
+    xml.Save(getFileName());
 
     return 0;
 }
 
 
 bool UserFile::changePasswordInFile(int userId, string &password){
+    bool fileExists = xml.Load(getFileName());
 
+    if (!fileExists){
+        return false;
+    }
+
+    xml.ResetPos();
+    xml.FindElem("Users");
+    xml.IntoElem();
+
+    while (xml.FindElem("User")) {
+        xml.FindChildElem("UserId");
+        if (stoi(xml.GetChildData()) == userId){
+            xml.FindChildElem("Password");
+            xml.SetChildData(password);
+        }
+    }
+    xml.Save(getFileName());
+
+    return true;
 }

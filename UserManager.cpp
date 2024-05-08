@@ -60,12 +60,11 @@ bool UserManager::isLoginExist(const string &login){
 }
 
 void UserManager::loginUser(){
-    /*
     User user;
     string login = "", password = "";
     vector <User>::iterator itr = users.begin();
 
-    cout << endl << "Enter login: ";
+    cout << "\nEnter login: ";
     login = Utils::readLine();
 
     while (itr != users.end()){
@@ -76,42 +75,42 @@ void UserManager::loginUser(){
 
                 if (itr -> getPassword() == password){
                     loggedUserId = itr -> getId();
-                    cout << endl << "You logged in." << endl << endl;
+                    cout << "\nYou logged in.\n\n";
                     system("pause");
                     return;
                 }
             }
-            cout << "Wrong password entered 3 times." << endl;
+            cout << "Wrong password entered 3 times.\n";
             system("pause");
             return;
         }
         itr++;
     }
-    cout << "There is no user with such a login" << endl << endl;
+    cout << "There is no user with such a login\n\n";
     system("pause");
     return;
-    */
 }
 
 void UserManager::changeLoggedInUserPassword(){
-    /*
     string newPassword = "";
-    cout << "Enter nowe password: ";
+    cout << "Enter new password: ";
     newPassword = Utils::readLine();
 
     for (vector <User>::iterator itr = users.begin(); itr != users.end(); itr++){
-        if (itr -> getId() == loggedUserId){
+        if (itr -> getId() == loggedUserId)
             itr -> setPassword(newPassword);
-            cout << "The password has been changed." << endl << endl;
-            system("pause");
-        }
     }
-    userFile.changePasswordInFile(users);
-    */
+
+    string result = userFile.changePasswordInFile(loggedUserId, newPassword) ? "The password has been changed.\n\n" : "The password has not been changed couse there is no xml file\n\n";
+    cout << result;
+
+    system("pause");
 }
 
 void UserManager::logoutUser(){
     loggedUserId = 0;
+    cout << "\nYou logged out.\n\n";
+    system("pause");
 }
 
 bool UserManager::isUserLoggedIn(){
