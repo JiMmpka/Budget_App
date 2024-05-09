@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include <windows.h>
+#include <windows.h>//TO DOO check if all includes are necessary
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -35,6 +35,7 @@ public:
     void loginUser();
     void changeLoggedInUserPassword();
     void logoutUser();
+    int getLoggedUserId();
 };
 
 #endif
