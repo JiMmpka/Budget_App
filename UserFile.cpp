@@ -70,7 +70,7 @@ bool UserFile::changePasswordInFile(int userId, string &password){
 
     while (xml.FindElem("User")) {
         xml.FindChildElem("UserId");
-        if (stoi(xml.GetChildData()) == userId){
+        if (Utils::convertStringToInt(xml.GetChildData()) == userId){
             xml.FindChildElem("Password");
             xml.SetChildData(password);
         }
