@@ -16,7 +16,7 @@ class OperationFile : public File{
     int lastIncomeId;
 
 public:
-    OperationFile(string FileName) : File(FileName){};
+    OperationFile(const string FileName) : File(FileName){};
 
     vector <Operation> loadOperationsFromFile (const int loggedUserId);
     bool addOperationToFile (const Operation & operation);

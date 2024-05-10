@@ -7,6 +7,6 @@ using namespace std;
 
 enum Type{
     INCOME,
-    EXPENSE,
+    EXPENSE
 };
 #endif
