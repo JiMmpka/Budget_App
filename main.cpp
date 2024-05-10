@@ -7,14 +7,12 @@ using namespace std;
 
 int main(){
     BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
-
     char choice;
 
     while (true){
         if (!budgetMainApp.isUserLoggedIn()){
             Menus::showTitle("HOME MENU");
             Menus::showHomeMenu();
-
             choice = Utils::getCharacter();
 
             switch (choice){
