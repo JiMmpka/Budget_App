@@ -1,36 +1,33 @@
 #include <iostream>
-//#include "BudgetMainApp.h"
+#include "BudgetMainApp.h"
 #include "Menus.h"
 #include "Utils.h"
 
 using namespace std;
 
 int main(){
-    //BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
-
+    BudgetMainApp budgetMainApp("users.xml", "incomes.xml", "expenses.xml");
     char choice;
 
     while (true){
-        //if (!budgetMainApp.isUserLoggedIn()){
-        if (true){//>>TEMP LINE FOR TESTS<<
+        if (!budgetMainApp.isUserLoggedIn()){
             Menus::showTitle("HOME MENU");
             Menus::showHomeMenu();
-
             choice = Utils::getCharacter();
 
             switch (choice){
             case '1':
-                //budgetMainApp.loginUser();
+                budgetMainApp.loginUser();
                 break;
             case '2':
-                //budgetMainApp.registerUser();
+                budgetMainApp.registerUser();
                 break;
             case '9':
                 cout << "\nSee you next time.\n";
                 exit(0);
                 break;
             default:
-                cout <<"\nThere is no such option in menu. Try again.\n" << endl;
+                cout <<"\nThere is no such option in menu. Try again.\n\n";
                 system("pause");
                 break;
             }
@@ -58,19 +55,19 @@ int main(){
                 //budgetMainApp.displaySelectedPeriodBalance();
                 break;
             case '6':
-                //budgetMainApp.changeLoggedInUserPassword();
+                budgetMainApp.changeLoggedInUserPassword();
                 break;
             case '7':
-                //budgetMainApp.logoutUser();
+                budgetMainApp.logoutUser();
                 break;
             default:
-                cout <<"\nThere is no such option in menu. Try again.\n" << endl;
+                cout <<"\nThere is no such option in menu. Try again.\n\n";
                 system("pause");
                 break;
             }
         }
     }
-    return 0;//?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+    return 0;
 }
 
 

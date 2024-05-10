@@ -53,5 +53,10 @@ int Utils::readInt(){
 }
 
 bool Utils::validateInput(string input){
+    if(input == ""){
+        cout << "\nThe entrance should have at least 1 sign.\n";
+        return true;
+    }
 
+    return false;
 }
