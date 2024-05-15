@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <map>
+#include <regex>
+#include <chrono>
 
 #include "Utils.h"//TO DOO check if all includes are necessary
 
@@ -10,11 +12,11 @@
 using namespace std;
 
 class DateMethods{
-    void calculateCurrentDate(map<string, int> & currentDate);
+    void calculateCurrentDate(map<string, int> & currentDate);//is that method necessary?
     int isYearLeap(int year);
 
 public:
-    bool validateDate(string &date);
+    static bool validateDate(const string &date); //TO DOO podzieliæ na oddzielne funkcje
     int convertStringDateToInt(const string &dateAsString);
     int convertDateToStringWithDasches(int dateAsInt);
     int getCurrentDate();

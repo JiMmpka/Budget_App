@@ -19,6 +19,6 @@ public:
     OperationFile(const string FileName) : File(FileName){};
 
     vector <Operation> loadOperationsFromFile (const int loggedUserId);
-    bool addOperationToFile (const Operation & operation);
+    bool addOperationToFile (const Operation & operation);// zapoisywaæ datê w pliku z myœlnikami czy bez?
 };
 #endif

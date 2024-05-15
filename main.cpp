@@ -40,7 +40,7 @@ int main(){
 
             switch (choice){
             case '1':
-                //budgetMainApp.addIncome();
+                budgetMainApp.addIncome(); // TO DOO
                 break;
             case '2':
                 //budgetMainApp.addExpense();

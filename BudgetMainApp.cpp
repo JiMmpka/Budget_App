@@ -24,7 +24,10 @@ void BudgetMainApp::logoutUser(){
     budgetManager = NULL;
 }
 
-void BudgetMainApp::addIncome(){}
+void BudgetMainApp::addIncome(){
+    budgetManager->addIncome();
+}
+
 void BudgetMainApp::addExpense(){}
 void BudgetMainApp::displayCurrentMonthBalance(){}
 void BudgetMainApp::displayPreviousMonthBalance(){}

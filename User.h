@@ -14,6 +14,14 @@ private:
     string password;
 
 public:
+    User(int userId = 0, string name = "", string surname = "", string login = "", string password = ""){
+    this -> userId = userId;
+    this -> name = name;
+    this -> surname = surname;
+    this -> login = login;
+    this -> password = password;
+    }
+
     void setId(int newId);
     void setName(string newName);
     void setSurname(string newSurname);

@@ -12,6 +12,7 @@
 #include "Utils.h"
 #include "Operation.h"
 #include "Type.h"
+#include "DateMethods.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ class BudgetManager{
     Operation addOperationDetails(const Type &type);
     void showBalance(int startDate, int endDate);
     double calculateBalance(int startDate, int endDate, const Type &type);
+    int getNewIncomeId();
 
 public:
     BudgetManager(const string incomeFileName, const string expenseFileName, int loggedUserId): incomeFile(incomeFileName), expenseFile(expenseFileName), LOGGED_USER_ID(loggedUserId){};
