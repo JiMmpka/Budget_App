@@ -40,10 +40,10 @@ int main(){
 
             switch (choice){
             case '1':
-                budgetMainApp.addIncome(); // TO DOO
+                budgetMainApp.addIncome();
                 break;
             case '2':
-                //budgetMainApp.addExpense();
+                budgetMainApp.addExpense();
                 break;
             case '3':
                 //budgetMainApp.displayCurrentMonthBalance();

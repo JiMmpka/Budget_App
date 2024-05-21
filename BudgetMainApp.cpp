@@ -28,7 +28,9 @@ void BudgetMainApp::addIncome(){
     budgetManager->addIncome();
 }
 
-void BudgetMainApp::addExpense(){}
+void BudgetMainApp::addExpense(){
+    budgetManager->addExpense();
+}
 void BudgetMainApp::displayCurrentMonthBalance(){}
 void BudgetMainApp::displayPreviousMonthBalance(){}
 void BudgetMainApp::displaySelectedPeriodBalance(){}

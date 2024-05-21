@@ -13,12 +13,16 @@
 using namespace std;
 
 class OperationFile : public File{
-    int lastIncomeId;
+    int lastOperationId;
 
 public:
-    OperationFile(const string FileName) : File(FileName){};
+    OperationFile(const string FileName) : File(FileName){
+    lastOperationId = 0;
+    };
 
     vector <Operation> loadOperationsFromFile (const int loggedUserId);
     bool addOperationToFile (const Operation & operation);// zapoisywaæ datê w pliku z myœlnikami czy bez?
+
+    int getLastOperationId();
 };
 #endif
