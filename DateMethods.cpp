@@ -8,7 +8,7 @@ bool DateMethods::validateDate(const string &date){//TO DOO podzieliæ na oddziel
     regex pattern("\\d{4}-\\d{2}-\\d{2}");
 
     if (!regex_match(date, pattern)) {
-        cout << "The correct date format is yyyy-mm-dd" << endl;
+        cout << "The correct date format is yyyy-mm-dd\n";
         return false;
     }
 
@@ -23,12 +23,12 @@ bool DateMethods::validateDate(const string &date){//TO DOO podzieliæ na oddziel
     sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day);
 
     if (year < 2000 || year > currentYear) {
-        cout << "Year should be between 2000 and current year." << endl;
+        cout << "Year should be between 2000 and current year.\n";
         flag = false;
     }
 
     if (month < 1 || month > 12) {
-        cout << "Month should be between 1 and 12." << endl;
+        cout << "Month should be between 1 and 12.\n";
         flag = false;
     }
 
@@ -48,7 +48,7 @@ bool DateMethods::validateDate(const string &date){//TO DOO podzieliæ na oddziel
     }
 
     if (day < 1 || day > daysInMonth) {
-        cout << "Day should be between 1 and " << daysInMonth << " for the selected month." << endl;
+        cout << "Day should be between 1 and " << daysInMonth << " for the selected month.\n";
         flag = false;
     }
 

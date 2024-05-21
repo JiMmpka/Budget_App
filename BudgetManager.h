@@ -13,6 +13,7 @@
 #include "Operation.h"
 #include "Type.h"
 #include "DateMethods.h"
+#include "CashMethods.h"
 
 using namespace std;
 

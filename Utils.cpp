@@ -60,3 +60,8 @@ bool Utils::validateInput(string input){
 
     return false;
 }
+
+string Utils::replaceCommaWithDot(string number) {
+    replace(number.begin(), number.end(), ',', '.');
+    return number;
+}

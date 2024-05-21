@@ -22,12 +22,17 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     while(!DateMethods::validateDate(operation.getDate()));
 
     cout << "Enter item name: ";
-    item = Utils::readLine();// validacja Utils::validateInput??
+    item = Utils::readLine();
     operation.setItem(item);
 
-    cout << "Enter amount: ";
-    amount = Utils::readLine(); // validacja Utils::validateInput?? oraz przecinek na kropkê, oraz czy jest to liczba zmiennoprzecinkowa
-    operation.setAmount(amount);
+    do{
+        cout << "Enter amount: ";
+        amount = Utils::readLine();
+        amount = Utils::replaceCommaWithDot(amount);
+        amount = CashMethods::changeAmountFormat(amount);
+        operation.setAmount(amount);
+    }
+    while(!CashMethods::validateAmount(amount));
 
     return operation;
 }
