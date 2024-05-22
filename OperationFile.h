@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>//TO DOO is this necessary?
 #include <cstdlib>//TO DOO is this necessary?
+#include <iomanip>
 
 #include "Operation.h"
 #include "Utils.h"
@@ -21,7 +22,7 @@ public:
     };
 
     vector <Operation> loadOperationsFromFile (const int loggedUserId);
-    bool addOperationToFile (const Operation & operation);// zapoisywaæ datê w pliku z myœlnikami czy bez?
+    bool addOperationToFile (const Operation & operation);
 
     int getLastOperationId();
 };

@@ -13,7 +13,7 @@ vector <Operation> OperationFile::loadOperationsFromFile (const int loggedUserId
     xml.FindElem();
     xml.IntoElem();
 
-    while (xml.FindElem()) {//Income or Expense depend of operation type/file
+    while (xml.FindElem()) {
         Operation operation;
 
         xml.FindChildElem("Id");
@@ -23,11 +23,11 @@ vector <Operation> OperationFile::loadOperationsFromFile (const int loggedUserId
         if (xml.FindChildElem("UserId") == loggedUserId){
             operation.setUserId(stoi(xml.GetChildData()));
             xml.FindChildElem("Date");
-            operation.setDate(xml.GetChildData());
+            operation.setDate(stoi(xml.GetChildData()));
             xml.FindChildElem("Item");
             operation.setItem(xml.GetChildData());
             xml.FindChildElem("Amount");
-            operation.setAmount(xml.GetChildData());
+            operation.setAmount(stod(xml.GetChildData()));
 
             operations.push_back(operation);
         }
@@ -37,6 +37,7 @@ vector <Operation> OperationFile::loadOperationsFromFile (const int loggedUserId
 
 bool OperationFile::addOperationToFile (const Operation & operation){
     bool fileExists = xml.Load(getFileName());
+    ostringstream oss;
 
     if (!fileExists){
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
@@ -57,7 +58,8 @@ bool OperationFile::addOperationToFile (const Operation & operation){
     xml.AddElem("UserId", operation.getUserId());
     xml.AddElem("Date", operation.getDate());
     xml.AddElem("Item", operation.getItem());
-    xml.AddElem("Amount", operation.getAmount());
+    oss << fixed << setprecision(2) << operation.getAmount();
+    xml.AddElem("Amount", oss.str());
 
     xml.Save(getFileName());
 

@@ -5,6 +5,9 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     string date;
     string item;
     string amount;
+    int intDate;
+    double floatAmont;
+    size_t idx;
 
     if(type == INCOME)
         operation.setId(getNewOperationId(type, controlLastIncomeIdFrom));
@@ -17,9 +20,10 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     do{
         cout << "Enter date: ";
         date = Utils::readLine();
-        operation.setDate(date);
+        intDate = DateMethods::convertStringDateToInt(date);
+        operation.setDate(intDate);
     }
-    while(!DateMethods::validateDate(operation.getDate()));
+    while(!DateMethods::validateDate(date));
 
     cout << "Enter item name: ";
     item = Utils::readLine();
@@ -30,7 +34,8 @@ Operation BudgetManager::addOperationDetails(const Type &type){
         amount = Utils::readLine();
         amount = Utils::replaceCommaWithDot(amount);
         amount = CashMethods::changeAmountFormat(amount);
-        operation.setAmount(amount);
+        floatAmont = stod(amount);
+        operation.setAmount(floatAmont);
     }
     while(!CashMethods::validateAmount(amount));
 
