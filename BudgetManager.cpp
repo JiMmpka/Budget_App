@@ -5,6 +5,10 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     string date;
     string item;
     string amount;
+    ostringstream oss;
+    //string currentDateWithDasches;
+    tm currentDate;
+    bool isOperationApplyToday;
     int intDate;
     double floatAmont;
     size_t idx;
@@ -17,11 +21,22 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     operation.setUserId(LOGGED_USER_ID);
     operation.setOperationType(type);
 
+    cout << "Does the operation apply to today? Type ""Y"" for yes or ""N"" for no: ";
+    isOperationApplyToday = ( "Y" == Utils::capitalizeFirstLetter(Utils::getCharacter())) ? true : false;
+
     do{
-        cout << "Enter date: ";
-        date = Utils::readLine();
-        intDate = DateMethods::convertStringDateToInt(date);
-        operation.setDate(intDate);
+        if (isOperationApplyToday){
+            currentDate = DateMethods::getCurrentDate();
+            oss << (currentDate.tm_year + 1900) << "-" << ((currentDate.tm_mon + 1) < 10 ? "0" : "") << (currentDate.tm_mon + 1) << "-" << currentDate.tm_mday;
+            date = oss.str();
+            cout << "\nDate: "<< date << "\n";
+        }
+        else{
+            cout << "Enter date: ";
+            date = Utils::readLine();
+        }
+            intDate = DateMethods::convertStringDateToInt(date);
+            operation.setDate(intDate);
     }
     while(!DateMethods::validateDate(date));
 

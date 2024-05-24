@@ -16,5 +16,7 @@ public:
     static int readInt();
     static bool validateInput(string input);
     static string replaceCommaWithDot(string number);
+    static string capitalizeFirstLetter(string text);
+    static string capitalizeFirstLetter(char character);
 };
 #endif
