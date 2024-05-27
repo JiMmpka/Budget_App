@@ -1,6 +1,5 @@
 #include "DateMethods.h"
 
-void DateMethods::calculateCurrentDate(map<string, int> & currentDate){}
 bool DateMethods::isYearLeap(int year){
     return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 }
@@ -40,7 +39,7 @@ bool DateMethods::validateDate(const string &date){
     currentDate = getCurrentDate();
     currentYear = currentDate.tm_year + 1900;
 
-    splitTheDate(date, year, month, day);
+    splitStringDate(date, year, month, day);
 
     if (year < 2000 || year > currentYear) {
         cout << "Year should be between 2000 and current year.\n";
@@ -80,20 +79,100 @@ int DateMethods::convertStringDateToInt(const string &dateAsString){
     return dateAsInt;
 }
 
-int DateMethods::convertDateToStringWithDasches(int dateAsInt){}
+string DateMethods::convertDateToStringWithDasches(int dateAsInt){
+    ostringstream oss;
+    oss << dateAsInt;
+    string dateStr = oss.str();
+    return dateStr.substr(0, 4) + "-" + dateStr.substr(4, 2) + "-" + dateStr.substr(6, 2);
+}
 
 tm DateMethods::getCurrentDate(){
     auto now = chrono::system_clock::now();
     time_t nowTime = chrono::system_clock::to_time_t(now);
     tm localTime;
     localtime_s(&localTime, &nowTime);
+
     return localTime;
 }
 
-void DateMethods::splitTheDate(const string &date, int &year, int &month, int &day){
+int DateMethods::getCurrentIntDate(){
+    tm currentDate;
+    stringstream oss;
+    int date = 0;
+
+    currentDate = DateMethods::getCurrentDate();
+    oss << (currentDate.tm_year + 1900) << ((currentDate.tm_mon + 1) < 10 ? "0" : "") << (currentDate.tm_mon + 1) << currentDate.tm_mday;
+    oss >> date;
+
+    return date;
+}
+
+void DateMethods::splitStringDate(const string &date, int &year, int &month, int &day){
     sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day);
 }
 
-int DateMethods::getCurrentMonthFirstDayDate(){}
-int DateMethods::getPreviousMonthLastDayDate(){}
-int DateMethods::getPreviousMonthFirstDayDate(){}
+void DateMethods::splitIntDate(const int &dateAsInt, int &year, int &month, int &day){
+    year = dateAsInt / 10000;
+    month = (dateAsInt / 100) % 100;
+    day = dateAsInt % 100;
+}
+
+int DateMethods::mergeDate(const int &year, const int &month, const int &day){
+    ostringstream oss;
+
+    oss << year
+    << setw(2) << setfill('0') << month
+    << setw(2) << setfill('0') << day;
+
+    return stoi(oss.str());
+}
+
+int DateMethods::getCurrentMonthFirstDayDate(){
+    int intDate = 0;
+    string stringDate = "";
+    string firstDayOfTheMonth = "01";
+
+    intDate = DateMethods::getCurrentIntDate();
+    stringDate = Utils::convertIntToString(intDate);
+    stringDate.resize(6);
+    stringDate.append(firstDayOfTheMonth);
+
+    return Utils::convertStringToInt(stringDate);
+}
+
+
+int DateMethods::getPreviousMonthFirstDayDate(){
+    int intDate = 0;
+    int firstDayOfTheMonth = 1;
+    int year = 0;
+    int month = 0;
+    int day = 0;
+
+    intDate = DateMethods::getCurrentIntDate();
+    DateMethods::splitIntDate(intDate, year, month, day);
+    day = firstDayOfTheMonth;
+
+    if (month > 1) {
+        month -= 1;
+    } else {
+        month = 12;
+        year -= 1;
+    }
+
+    return mergeDate(year, month, day);
+}
+
+int DateMethods::getPreviousMonthLastDayDate(){
+    int previousMonthFirstDayDate = 0;
+    string stringDate = "";
+    string firstDayOfTheMonth = "01";
+    int year = 0;
+    int month = 0;
+    int day = 0;
+
+    previousMonthFirstDayDate = getPreviousMonthFirstDayDate();
+    splitIntDate(previousMonthFirstDayDate, year, month, day);
+    day = numberOfDaysInMontch(year, month);
+
+    return mergeDate(year, month, day);
+}

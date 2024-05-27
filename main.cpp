@@ -46,13 +46,13 @@ int main(){
                 budgetMainApp.addExpense();
                 break;
             case '3':
-                //budgetMainApp.displayCurrentMonthBalance();
+                budgetMainApp.displayCurrentMonthBalance(); // TO DOO
                 break;
             case '4':
-                //budgetMainApp.displayPreviousMonthBalance();
+                budgetMainApp.displayPreviousMonthBalance();
                 break;
             case '5':
-                //budgetMainApp.displaySelectedPeriodBalance();
+                budgetMainApp.displaySelectedPeriodBalance();
                 break;
             case '6':
                 budgetMainApp.changeLoggedInUserPassword();

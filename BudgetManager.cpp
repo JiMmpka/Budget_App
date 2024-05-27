@@ -5,13 +5,10 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     string date;
     string item;
     string amount;
-    ostringstream oss;
-    //string currentDateWithDasches;
     tm currentDate;
     bool isOperationApplyToday;
     int intDate;
     double floatAmont;
-    size_t idx;
 
     if(type == INCOME)
         operation.setId(getNewOperationId(type, controlLastIncomeIdFrom));
@@ -26,9 +23,7 @@ Operation BudgetManager::addOperationDetails(const Type &type){
 
     do{
         if (isOperationApplyToday){
-            currentDate = DateMethods::getCurrentDate();
-            oss << (currentDate.tm_year + 1900) << "-" << ((currentDate.tm_mon + 1) < 10 ? "0" : "") << (currentDate.tm_mon + 1) << "-" << currentDate.tm_mday;
-            date = oss.str();
+            date = DateMethods::convertDateToStringWithDasches(DateMethods::getCurrentIntDate());
             cout << "\nDate: "<< date << "\n";
         }
         else{
@@ -49,10 +44,14 @@ Operation BudgetManager::addOperationDetails(const Type &type){
         amount = Utils::readLine();
         amount = Utils::replaceCommaWithDot(amount);
         amount = CashMethods::changeAmountFormat(amount);
-        floatAmont = stod(amount);
-        operation.setAmount(floatAmont);
+
+        if (CashMethods::validateAmount(amount)) {
+            floatAmont = stod(amount);
+            operation.setAmount(floatAmont);
+            break;
+        }
     }
-    while(!CashMethods::validateAmount(amount));
+    while(true);
 
     return operation;
 }
@@ -84,7 +83,50 @@ int BudgetManager::getNewOperationId(const Type &type, ControlLastOperationIdFro
     }
 }
 
-void BudgetManager::showBalance(int startDate, int endDate){}
+void BudgetManager::showBalance(int startDate, int endDate){
+    vector<Operation> filteredIncomes;
+    vector<Operation> filteredExpenses;
+    double totalIncome = 0.0;
+    double totalExpense = 0.0;
+
+    for (const Operation& income : incomes) {
+        if (income.getDate() >= startDate && income.getDate() <= endDate) {
+            filteredIncomes.push_back(income);
+            totalIncome += income.getAmount();
+        }
+    }
+
+    for (const Operation& expense : expenses) {
+        if (expense.getDate() >= startDate && expense.getDate() <= endDate) {
+            filteredExpenses.push_back(expense);
+            totalExpense += expense.getAmount();
+        }
+    }
+
+    auto sortByDate = [](const Operation& op1, const Operation& op2) {
+        return op1.getDate() < op2.getDate();
+    };
+
+    sort(filteredIncomes.begin(), filteredIncomes.end(), sortByDate);
+    sort(filteredExpenses.begin(), filteredExpenses.end(), sortByDate);
+
+    cout << "Incomes:\n";
+    for (const Operation& income : filteredIncomes) {
+        cout << "Date: " << DateMethods::convertDateToStringWithDasches(income.getDate()) << ", Item: " << income.getItem() << ", Amount: " << fixed << setprecision(2) << showpoint << income.getAmount() << "\n";
+    }
+
+    cout << "\nExpenses:\n";
+    for (const Operation& expense : filteredExpenses) {
+        cout << "Date: " << DateMethods::convertDateToStringWithDasches(expense.getDate()) << ", Item: " << expense.getItem() << ", Amount: " << fixed << setprecision(2) << showpoint << expense.getAmount() << "\n";
+    }
+
+    cout << "\nSummary:\n";
+    cout << "Total Income: " << fixed << setprecision(2) << showpoint << totalIncome << "\n";
+    cout << "Total Expense: " << fixed << setprecision(2) << showpoint << totalExpense << "\n";
+    cout << "Net Savings: " << fixed << setprecision(2) << showpoint << (totalIncome - totalExpense) << "\n";
+    system("pause");
+}
+
 double BudgetManager::calculateBalance(int startDate, int endDate, const Type &type){}
 
 void BudgetManager::addIncome(){
@@ -107,6 +149,35 @@ void BudgetManager::addExpense(){
     system("pause");
 }
 
-void BudgetManager::displayCurrentMonthBalance(){}
-void BudgetManager::displayPreviousMonthBalance(){}
-void BudgetManager::displaySelectedPeriodBalance(){}
+void BudgetManager::displayCurrentMonthBalance(){
+    showBalance(DateMethods::getCurrentMonthFirstDayDate(), DateMethods::getCurrentIntDate());
+}
+
+void BudgetManager::displayPreviousMonthBalance(){
+    showBalance(DateMethods::getPreviousMonthFirstDayDate(), DateMethods::getPreviousMonthLastDayDate());
+}
+
+void BudgetManager::displaySelectedPeriodBalance(){
+    string startDate = "";
+    string endDate = "";
+    int intStartDate = 0;
+    int intEndDate = 0;
+
+    do{
+        cout << "Enter start date: ";
+        startDate = Utils::readLine();
+    }
+    while(!DateMethods::validateDate(startDate));
+
+    do{
+        cout << "Enter end date: ";
+        endDate = Utils::readLine();
+    }
+    while(!DateMethods::validateDate(endDate));
+
+    intStartDate = DateMethods::convertStringDateToInt(startDate);
+    intEndDate = DateMethods::convertStringDateToInt(endDate);
+
+    showBalance(intStartDate, intEndDate);
+}
+

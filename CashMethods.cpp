@@ -1,11 +1,11 @@
 #include "CashMethods.h"
 
-regex CashMethods::intPattern("^-?\\d+$");
-regex CashMethods::floatPattern("^-?\\d+\\.\\d+$");
+regex CashMethods::intPattern("^\\d+$");
+regex CashMethods::floatPattern("^\\d+\\.\\d+$");
 
 bool CashMethods::validateAmount(string amount){
     if (!regex_match(amount, intPattern) && !regex_match(amount, floatPattern)){
-        cout << "Wrong amount format. Type floats or integers.\n";
+        cout << "Wrong amount format. Type positive floats or integers.\n";
         return false;
     }
     return true;

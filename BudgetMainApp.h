@@ -13,7 +13,6 @@ class BudgetMainApp{
     const string INCOMES_FILE_NAME;
     const string EXPENSE_FILE_NAMES;
 
-
 public:
     BudgetMainApp(string userFileName, string incomeFileName, string expenseFileName)
     : userManager(userFileName), INCOMES_FILE_NAME(incomeFileName), EXPENSE_FILE_NAMES(expenseFileName){
