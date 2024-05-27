@@ -9,4 +9,10 @@ enum Type{
     INCOME,
     EXPENSE
 };
+
+enum ControlLastOperationIdFrom{
+    XMLFILE,
+    VECTOR
+};
+
 #endif

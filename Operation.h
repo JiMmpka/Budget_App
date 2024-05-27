@@ -3,27 +3,36 @@
 
 #include <iostream>
 
+#include "Type.h"
+
 using namespace std;
 
 struct Operation{
 private:
     int id;
     int userId;
-    string date;
+    int date;
     string item;
-    string amount;
+    double amount;
+    Type operationType;
 
 public:
+    Operation(int id = 0, int userId = 0, int date = 0, string item = "", double amount = 0.0, Type operationType = INCOME)
+        : id(id), userId(userId), date(date), item(item), amount(amount), operationType(operationType) {}
+
     void setId(int newId);
     void setUserId(int newUserId);
-    void setDate(string newDate);
-    void setItem(string newItem);
-    void setAmount(string newAmount);
+    void setDate(const int &newDate);
+    void setItem(const string &newItem);
+    void setAmount(const double &newAmount);
+    void setOperationType(Type newOperationType);
 
-    int getId();
-    int getUserId();
-    string getdate();
-    string getItem();
-    string getAmount();
+    int getId() const;
+    int getUserId() const;
+    int getDate() const;
+    string getItem() const;
+    double getAmount() const;
+    Type getOperationType() const;
 };
-#endif
+
+#endif // OPERATION_H

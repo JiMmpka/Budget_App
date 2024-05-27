@@ -14,7 +14,7 @@ protected:
     int lastId;
     CMarkup xml;
 
-    File(string FileName) : FILE_NAME(FileName){};
+    File(const string FileName) : FILE_NAME(FileName){};
 
     void checkRootNode();//TO DOO gdzie tego mam u¿yæ?
     string getFileName();

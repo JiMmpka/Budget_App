@@ -2,7 +2,12 @@
 #define DATEMETHODS_H
 
 #include <iostream>
-#include <map>
+#include <regex>
+#include <chrono>
+#include <ctime>
+#include <string>
+#include <sstream>
+#include <iomanip>
 
 #include "Utils.h"//TO DOO check if all includes are necessary
 
@@ -10,17 +15,21 @@
 using namespace std;
 
 class DateMethods{
-    void calculateCurrentDate(map<string, int> & currentDate);
-    int isYearLeap(int year);
+    static bool isYearLeap(int year);
+    static void splitStringDate(const string &dateAsString, int &year, int &month, int &day);
+    static void splitIntDate(const int &dateAsInt, int &year, int &month, int &day);
+    static int mergeDate(const int &year, const int &month, const int &day);
+    static int numberOfDaysInMontch(const int &year, const int &month);
 
 public:
-    bool validateDate(string &date);
-    int convertStringDateToInt(const string &dateAsString);
-    int convertDateToStringWithDasches(int dateAsInt);
-    int getCurrentDate();
-    int getCurrentMonthFirstDayDate();
-    int getPreviousMonthLastDayDate();
-    int getPreviousMonthFirstDayDate();
+    static bool validateDate(const string &date);
+    static int convertStringDateToInt(const string &dateAsString);
+    static string convertDateToStringWithDasches(int dateAsInt);
+    static tm getCurrentDate();
+    static int getCurrentIntDate();
+    static int getCurrentMonthFirstDayDate();
+    static int getPreviousMonthFirstDayDate();
+    static int getPreviousMonthLastDayDate();
 };
 
 #endif

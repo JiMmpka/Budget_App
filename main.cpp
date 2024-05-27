@@ -40,19 +40,19 @@ int main(){
 
             switch (choice){
             case '1':
-                //budgetMainApp.addIncome();
+                budgetMainApp.addIncome();
                 break;
             case '2':
-                //budgetMainApp.addExpense();
+                budgetMainApp.addExpense();
                 break;
             case '3':
-                //budgetMainApp.displayCurrentMonthBalance();
+                budgetMainApp.displayCurrentMonthBalance(); // TO DOO
                 break;
             case '4':
-                //budgetMainApp.displayPreviousMonthBalance();
+                budgetMainApp.displayPreviousMonthBalance();
                 break;
             case '5':
-                //budgetMainApp.displaySelectedPeriodBalance();
+                budgetMainApp.displaySelectedPeriodBalance();
                 break;
             case '6':
                 budgetMainApp.changeLoggedInUserPassword();

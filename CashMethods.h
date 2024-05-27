@@ -2,15 +2,19 @@
 #define CASHMETHODS_H
 
 #include <iostream>
+#include <regex>
 
 #include "Utils.h"//TO DOO check if all includes are necessary
-
 
 using namespace std;
 
 class CashMethods{
+    static regex intPattern;
+    static regex floatPattern;
+
 public:
-    bool validateAmount(string amount);
+    static string changeAmountFormat(string amount);
+    static bool validateAmount(string amount);
 };
 
 #endif
