@@ -5,7 +5,6 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     string date;
     string item;
     string amount;
-    tm currentDate;
     bool isOperationApplyToday;
     int intDate;
     double floatAmont;
@@ -35,9 +34,12 @@ Operation BudgetManager::addOperationDetails(const Type &type){
     }
     while(!DateMethods::validateDate(date));
 
-    cout << "Enter item name: ";
-    item = Utils::readLine();
-    operation.setItem(item);
+    do{
+        cout << "Enter item name: ";
+        item = Utils::readLine();
+        operation.setItem(item);
+    }
+    while(Utils::validateInput(item));
 
     do{
         cout << "Enter amount: ";
@@ -126,8 +128,6 @@ void BudgetManager::showBalance(int startDate, int endDate){
     cout << "Net Savings: " << fixed << setprecision(2) << showpoint << (totalIncome - totalExpense) << "\n";
     system("pause");
 }
-
-double BudgetManager::calculateBalance(int startDate, int endDate, const Type &type){}
 
 void BudgetManager::addIncome(){
     Operation operation = addOperationDetails(INCOME);

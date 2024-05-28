@@ -64,6 +64,12 @@ void UserManager::loginUser(){
     string login = "", password = "";
     vector <User>::iterator itr = users.begin();
 
+    if(users.empty()){
+        cout << "Please register first.\n";
+        system("pause");
+        return;
+    }
+
     cout << "\nEnter login: ";
     login = Utils::readLine();
 

@@ -1,7 +1,6 @@
 #ifndef BUDGETMAINAPP_H
 #define BUDGETMAINAPP_H
 
-#include <iostream>
 #include "UserManager.h"
 #include "BudgetManager.h"
 
