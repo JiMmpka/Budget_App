@@ -1,18 +1,7 @@
 #ifndef BUDGETMANAGER_H
 #define BUDGETMANAGER_H
 
-#include <iostream>
-#include <vector>
-#include <windows.h>//TO DOO check if all includes are necessary
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <algorithm>
-
 #include "OperationFile.h"
-#include "Utils.h"
-#include "Operation.h"
-#include "Type.h"
 #include "DateMethods.h"
 #include "CashMethods.h"
 
@@ -29,7 +18,6 @@ class BudgetManager{
 
     Operation addOperationDetails(const Type &type);
     void showBalance(int startDate, int endDate);
-    double calculateBalance(int startDate, int endDate, const Type &type);
     int getNewOperationId(const Type &type, ControlLastOperationIdFrom &controlLastOperationIdFrom);
 
 public:

@@ -37,21 +37,6 @@ char Utils::getCharacter(){
     return sign;
 }
 
-int Utils::readInt(){
-    string input = "";
-    int number = 0;
-
-    while (true){
-        getline(cin, input);
-
-        stringstream myStream(input);
-        if (myStream >> number)
-            break;
-        cout << "This is not integer. Type again." << endl;
-    }
-    return number;
-}
-
 bool Utils::validateInput(string input){
     if(input == ""){
         cout << "\nThe entrance should have at least 1 sign.\n";
@@ -64,14 +49,6 @@ bool Utils::validateInput(string input){
 string Utils::replaceCommaWithDot(string number) {
     replace(number.begin(), number.end(), ',', '.');
     return number;
-}
-
-string Utils::capitalizeFirstLetter(string text){
-    if (!text.empty()){
-        transform(text.begin(), text.end(), text.begin(), ::tolower);
-        text[0] = toupper(text[0]);
-    }
-    return text;
 }
 
 string Utils::capitalizeFirstLetter(char ch) {
